@@ -28,12 +28,15 @@ function changeDialValue (index, incrementBy) {
   // eg: redirect('larry-lobster')
   // the redirect function will only redirect if the lockState is unlocked
 
+  // (number + limit) % limit ensures within limit
   lockState.wheels[index] = (lockState.wheels[index] + incrementBy + N_DECIMAL) % N_DECIMAL
+  // checking combination
   for (let i = 0; i < SECRET_COMBO.length; i++) {
     if (lockState.wheels[i] !== SECRET_COMBO[i]) {
       return
     }
   }
+  // unlocked
   lockState.locked = false
   redirect('bloomest')
 }
