@@ -1,6 +1,8 @@
-const redirect = window.redirect
+const redirect = window.redirect;
 
-const SECRET_COMBO = [1, 3, 5, 1]
+const SECRET_COMBO = [1, 3, 5, 1];
+
+const N_DECIMAL = 10;
 
 const lockState = window.mobx.observable({
   locked: true,
@@ -25,6 +27,15 @@ function changeDialValue (index, incrementBy) {
   // call the redirect() function with your name
   // eg: redirect('larry-lobster')
   // the redirect function will only redirect if the lockState is unlocked
+
+  lockState.wheels[index] = (lockState.wheels[index] + incrementBy + N_DECIMAL) % N_DECIMAL;
+  for(let i = 0; i < SECRET_COMBO.length; i++) {
+    if(lockState.wheels[i] != SECRET_COMBO[i]) {
+      return;
+    }
+  }
+  lockState.locked = false;
+  redirect('bloomest');
 }
 
 // let our other modules find our functions
