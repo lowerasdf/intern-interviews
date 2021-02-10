@@ -1,4 +1,8 @@
 # Intern Interviews
+
+## Developer Notes
+- The linter gives a false negative error on using a certain package.
+
 ## Directions
 - Please duplicate this respository as a private repo in your own GitHub account.
 - Write your profile page (see details under [Profile Page](#profile-page))
